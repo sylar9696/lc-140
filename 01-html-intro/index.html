@@ -5,11 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intro Html</title>
+
+    <!-- link esterno al file css -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- css interno all'html -->
+     <!-- <style>
+
+        /* div{
+            background-color: red;
+        } */
+
+        .container-red{
+            background-color: red;
+        }
+
+        .container-blue{
+            background-color: blue;
+            
+        }
+
+        .text-white{
+            color: #ffa4ff;
+        }
+
+     </style> -->
+
+
 </head>
 
 <body>
 
-    <div>
+    <div class="container-red">
         <p>block level</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta minima provident fuga atque? Laborum aliquid
             totam deleniti co</p>
@@ -26,12 +53,15 @@
     <input type="number" min="0" max="5">
 
     <hr>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi vel dolorum quas consequuntur. Fugit in cupiditate
-        ullam eius eum quae, laborum quod similique molestiae fugiat! Inventore adipisci dolorum fuga dolor.</p>
-    <br>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic et illo autem aliquid laboriosam eum impedit
-        aspernatur, earum, corrupti possimus ratione vel. Recusandae, distinctio accusamus. Fugiat culpa quidem porro
-        quos?</p>
+    <div class="container-blue text-white">
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi vel dolorum quas consequuntur. Fugit in cupiditate
+            ullam eius eum quae, laborum quod similique molestiae fugiat! Inventore adipisci dolorum fuga dolor.</p>
+        <br>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic et illo autem aliquid laboriosam eum impedit
+            aspernatur, earum, corrupti possimus ratione vel. Recusandae, distinctio accusamus. Fugiat culpa quidem porro
+            quos?</p>
+    </div>
 
 </body>
 

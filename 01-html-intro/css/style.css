@@ -1,0 +1,16 @@
+        /* div{
+            background-color: red;
+        } */
+
+        .container-red{
+            background-color: red;
+        }
+
+        .container-blue{
+            background-color: blue;
+            
+        }
+
+        .text-white{
+            color: #ffa4ff;
+        }
