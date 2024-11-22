@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li{
+    margin-left: 20px;
+}
+
+.img-paper-scientifico{
+    background-image: url("../imgs/optimal-hyperplane\ \(1\).png");
+    height: 200px;
+    width: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid red;
+}
+
