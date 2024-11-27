@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root{
+    --primary-color: #843131;
+    --pippo: 2px;
+    --mt-2: 4px;
+    --font1: "Roboto";
+    --font2: 'Times New Roman';
+    --testo: "ciao pippo"
+}
+
+html{
+    font-family: var(--font1);
+}
+
+h2{
+    font-family: var(--font2);
+}
+
+h2::before{
+    content: var(--testo);
+}
+
+div.starred{
+    color: var(--primary-color);
+}
+
+input[type="password"]{
+    color: green;
+}
+
+a:visited{
+    color: yellow;
+}
+
+nav{
+    outline: var(--pippo) solid black;
+}
+
+nav:hover a{
+    background-color: var(--primary-color);
+    font-size: 30px;
+}
+
+nav{
+    margin: calc( var( --mt-2 ) * var( --mt-2 ));
+}
