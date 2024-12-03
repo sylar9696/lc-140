@@ -1,0 +1,53 @@
+div > div{
+    background-color: lightcoral;
+    /* height: 100px; */
+    /* aspect-ratio: 1; */
+}
+
+.flex{
+    display: flex;
+}
+
+.flex-column{
+    flex-direction:column;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+.align-items-center{
+    align-items: center;
+}
+
+.justify-content-center{
+    justify-content: center;
+}
+
+li{
+    display: inline-block;
+    margin: 10px;
+}
+
+.circle{
+    border: 1px solid lightgreen;
+    border-radius: 50%;
+    height: 70px;
+    aspect-ratio: 1;
+}
+
+.wrap{
+    flex-wrap: wrap;
+}
+
+.grow-small{
+ flex-grow: 1;
+}
+
+.grow-medium{
+ flex-grow: 4;
+}
+
+.grow-big{
+ flex-grow: 8;
+}
