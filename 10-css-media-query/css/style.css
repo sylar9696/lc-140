@@ -1,0 +1,84 @@
+/*
+senza media query:  stile va da 0 a infinito
+con media query: limitiamo il css alle dimensioni scelte
+
+se mobile first o desktop first
+*/
+
+/* deciso: desktop first */
+
+/* header {
+    background-color: lightcoral;
+
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav ul {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    list-style-type: none;
+}
+
+ul li a {
+    font-size: 1.2rem;
+}
+
+.hamburger-menu {
+    display: none;
+}
+*/
+
+/* media query va da 0 a 720px */
+/* @media screen and (max-width: 720px) {
+    .hamburger-menu {
+        display: block;
+    }
+
+    .menu-left,
+    .menu-right {
+        display: none;
+    }
+
+    ul li a {
+        font-size: 1rem;
+    }
+}  */
+
+
+.menu-left,
+.menu-right {
+    display: none;
+}
+
+
+/* media query mobile first da 720 a infinito */
+@media screen and (min-width: 720px) {
+
+    .menu-left,
+    .menu-right {
+        display: flex;
+    }
+
+    .hamburger-menu {
+        display: none;
+    }
+
+    header nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header nav ul {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        list-style-type: none;
+    }
+}

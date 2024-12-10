@@ -1,0 +1,24 @@
+/*
+media per tablet
+da 1200 a infinito
+*/
+
+@media screen and (min-width: 1200px) {
+
+    h2{
+        font-size: 2rem;
+    }
+
+    .jumbotron__text{
+        max-width: 40%;
+    }
+
+    .jumbotron__img{
+        flex-basis: 60%;
+    }
+
+    .services .card{
+        flex-basis: calc(100% / 3 - 10px);
+        /* flex-grow: 1; */
+    }
+}

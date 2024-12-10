@@ -1,0 +1,52 @@
+/*
+media per tablet
+da 768 a infinito
+*/
+
+@media screen and (min-width: 768px) {
+
+    .hamburger-menu{
+        display: none;
+    }
+
+    .menu-extended{
+        display: flex;
+        gap: 10px;
+    }
+
+    .menu-extended__pill{
+        background-color: lightgray;
+        padding: 5px 10px;
+        border: 1px solid lightslategray;
+        border-radius: 20px;
+    }
+
+    .jumbotron__text{
+        max-width: 60%;
+    }
+
+    .jumbotron__img{
+        flex-basis: 40%;
+        border: 3px solid lightgreen;
+        background-image: url("../imgs/jumbotron.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: right;
+    }
+
+    .services{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .services .card{
+        flex-basis: calc(100% / 2 - 10px);
+        /* flex-grow: 1; */
+        min-height: 400px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
