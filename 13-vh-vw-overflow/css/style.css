@@ -1,0 +1,20 @@
+section#a{
+    height: 100px;
+}
+
+section#a > div{
+    height: 80%;
+    background-color: lightcoral;
+}
+
+#a{
+    background-color: lightseagreen;
+}
+
+#b{
+    background-color: lightcoral;
+}
+
+#c{
+    background-color: lightgreen;
+}
