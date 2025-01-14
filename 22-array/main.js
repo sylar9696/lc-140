@@ -134,7 +134,7 @@ const pippo = fruits.pop()
 
 console.log( pippo )
 
-
+console.log( typeof( pippo ) )
 
 //sintassi da non usare se hai array const
 // numbers = [1, 2, 3, 8, 10];
