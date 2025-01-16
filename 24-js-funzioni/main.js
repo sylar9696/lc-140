@@ -14,7 +14,7 @@ sommaNumeri( valoreUtente1, valoreUtente2, "Ciao classe 140, la somma è: " )
 
 
 //invocazione della funzione
-// sommaNumeri( 7, 8 )
+//sommaNumeri( 7, 8 )
 
 // console.log( sommaNumeri(7, 8) ) // 15
 // alert( sommaNumeri(7, 8) )
@@ -22,9 +22,11 @@ sommaNumeri( valoreUtente1, valoreUtente2, "Ciao classe 140, la somma è: " )
 
 
 
-// function sommaNumeri(num1, num2) {
-//     // let somma = num1 + num2 
-//     // return somma
+function sommaNumeri(num1, num2) {
+    // let somma = num1 + num2 
+    // return somma
 
-//     return num1 + num2
-// }
+    // console.log( somma )
+
+    return somma
+}
