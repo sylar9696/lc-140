@@ -1,3 +1,7 @@
+
+/**
+ * Logs the sum of 50 and 10 to the console.
+ */
 function sum() {
     console.log("la sommma è: " + ( 50 + 10) )
 }
@@ -15,6 +19,7 @@ function random(min, max){
 //     sum,
 //     random
 // };
+
 
 export {
     sum,
