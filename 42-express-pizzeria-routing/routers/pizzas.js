@@ -1,32 +1,26 @@
 const express = require('express')
 const router = express.Router();
 
+const arrayPizzas = require('../data/pizzas.js');
+	
+// const pizzaController = require('../controllers/pizzaController');
+
+const { index, show, store, update, patch, destroy } = require('../controllers/pizzaController');
+
 // index
-router.get('/', function (req, res) {
-    res.send('Lista delle pizze');
-});
+router.get('/', index);
 // show
-router.get('/:id', function (req, res) {
-    res.send('Dettagli della pizza ' + req.params.id);
-});
+router.get('/:id', show);
 // store
-router.post('/', function (req, res) {
-    res.send('Creazione nuova pizza');
-});
+router.post('/', store);
 
 // update
-router.put('/:id', function (req, res) {
-    res.send('Modifica integrale della pizza ' + req.params.id);
-});
+router.put('/:id', update);
 
-// modify
-router.patch('/:id', function (req, res) {
-    res.send('Modifica parziale della pizza ' + req.params.id);
-});
+// patch
+router.patch('/:id', patch);
 
 // destroy
-router.delete('/:id', function (req, res) {
-    res.send('Eliminazione della pizza ' + req.params.id);
-});
+router.delete('/:id', destroy);
 
 module.exports = router;
