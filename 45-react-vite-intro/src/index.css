@@ -1,0 +1,113 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  border: 5px solid red;
+	font-family: sans-serif;
+  background-image: url('./assets/img/mountains.jpg');
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Utils */
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+
+
+/* Components: Header */
+
+figure {
+	text-align: center;
+}
+
+nav {
+	font: sans-serif;
+}
+
+ul {
+	display: flex;
+	padding: 0;
+	justify-content: center;
+	margin: 30px;
+}
+
+ul li {
+	list-style-type: none;
+	font-weight: bold;
+}
+
+ul li a {
+	padding: 10px;
+	transition: background 0.4s;
+}
+
+ul li a.active,
+ul li a:hover {
+	background: lightblue;
+}
+
+
+/* components: Main */
+
+main {
+	background-image: url('./assets/img/background.jpg');
+	text-align: center;
+	padding: 4rem 1rem;
+	margin: 4rem 0;
+}
+
+/* Compoennts: Footer */
+
+.footer-nav {
+	width: 80%;
+	display: flex;
+	margin: 0 auto;
+	margin-bottom: 3rem;
+}
+
+.footer-col {
+	flex-basis: calc(100% / 3);
+	display: flex;
+	flex-shrink: 0;
+	justify-content: center;
+	padding: 0 1rem;
+}
+
+.footer-col h4 {
+	text-transform: uppercase;
+	font-size: 1.25em;
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+
+.footer-col ul {
+	list-style-type: none;
+	display: block;
+	margin: 0;
+}
+
+.footer-col ul li a {
+	display: inline-block;
+	margin-bottom: 0.25rem;
+	text-decoration: none;
+	padding: 0;
+	font-size: 0.875em;
+	font-weight: normal;
+}
