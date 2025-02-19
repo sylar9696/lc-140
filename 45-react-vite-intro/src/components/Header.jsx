@@ -1,18 +1,24 @@
-const Header = () => {
+import Logo from "./Logo"
+import NavBar from "./NavBar"
+
+/*
+
+props : {
+    slogan: ,,,,,,
+    links: [
+        {
+    }
+    ]
+}
+
+*/
+
+const Header = (props) => {
     return (
         <header>
-            <figure>
-                <img src="/logo.png" alt="Logo" />
-            </figure>
-            <nav>
-                <ul>
-                    <li><a className="text-primary" href="#">Home</a></li>
-                    <li><a href="#" className="active">Prodotti</a></li>
-                    <li><a href="#">Chi siamo</a></li>
-                    <li><a href="#">Contatti</a></li>
-                </ul>
-            </nav>
-
+            <Logo slogan={ props.slogan }/>
+            
+            <NavBar links={ props.links }/>
         </header>
     )
 }

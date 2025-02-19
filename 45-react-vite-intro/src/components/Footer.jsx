@@ -1,11 +1,11 @@
+import Logo from "./Logo"
+
 const Footer = () => {
     return (
         <footer className="container">
             <nav className="footer-nav">
                 <div className="footer-col">
-                    <figure>
-                        <img src="/logo.png" alt="La Molisana" />
-                    </figure>
+                    <Logo slogan="Qualità Italiana"/>
                 </div>
                 <div className="footer-col">
                     <div>
