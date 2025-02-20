@@ -111,3 +111,54 @@ main {
 	font-size: 0.875em;
 	font-weight: normal;
 }
+
+/* components: products */
+
+.products{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.card{
+	flex-basis: calc( 100% / 4 - 10px );
+}
+
+/* components: alert */
+
+.alert-container{
+	margin: 1rem 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.alert{
+	display: inline-block;
+	margin: 0 auto;
+	border: 1px solid transparent
+}
+
+.alert.info{
+	border-color: blue;
+	background-color: lightblue;
+}
+
+.alert.success{
+	color: white;
+	border-color: green;
+	background-color: lightgreen;
+}
+
+.alert.error{
+	color: white;
+	border-color: red;
+	background-color: lightcoral;
+}
+
+.alert ul{
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}

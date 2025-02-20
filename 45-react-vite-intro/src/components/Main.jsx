@@ -1,9 +1,9 @@
+import ProductList from "./products/ProductList"
+
 const Main = () => {
     return (
         <main>
-            <section id="products">
-                <h2>Lista prodotti</h2>
-            </section>
+            <ProductList />
         </main>
     )
 }

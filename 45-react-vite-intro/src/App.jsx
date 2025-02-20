@@ -1,4 +1,5 @@
-import Header from "./components/Header"
+import Alert from "./components/dumbComp/Alert"
+import Header from "./components/header/Header"
 import Main from "./components/Main"
 import Footer from "./components/Footer"
 
@@ -19,6 +20,15 @@ function App() {
   return (
     <>
       <Header slogan={slogan} links={ links }/>
+
+        <Alert type="error">
+          <ul>
+            <li>Error 1</li>
+            <li>Error 2</li>
+            <li>Error 3</li>
+          </ul>
+        </Alert>
+        
       <Main />
       <Footer />
     </>
