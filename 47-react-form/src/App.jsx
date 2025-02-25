@@ -1,6 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const initialTasks = ['Fare la spesa', 'Pulire casa', 'Fare il bucato'];
+const initialTasks = [
+  'Fare la spesa',
+  'Pulire casa',
+  'Fare il bucato'
+];
 
 function App() {
   const [firstName, setFirstName] = useState('Mario');
@@ -10,6 +14,9 @@ function App() {
   const [tasks, setTasks] = useState(initialTasks);
   //Nuovo task da aggiungere all'array iniziale
   const [newTask, setNewTask] = useState('');
+  //filtro di ricerca della todo list
+  const [search, setSearch] = useState('')
+  const [filteredTasks, setFilteredTasks] = useState( tasks )
 
   const handleChange = (e) => {
     console.log(e);
@@ -32,6 +39,15 @@ function App() {
     return setTasks(arrayClone);
   };
 
+  useEffect(() => {
+    console.log('è stato attivato useEffect')
+    setFilteredTasks(
+      tasks.filter( element => {
+        return element.toLowerCase().includes( search.toLowerCase() )
+      })
+    )
+  }, [ search, tasks ])
+
   return (
     <>
       <input type="text" value={firstName} onChange={handleChange} />
@@ -40,8 +56,20 @@ function App() {
 
       <div className="container mt-5 w-50">
         <h1>tasks</h1>
+
+        <div>
+          <input 
+            type="text"
+            className='form-control'
+            placeholder='Cerca task'
+            value={search}
+            onChange={ (e) => setSearch(e.target.value) }
+          />
+        </div>
+
+
         <ul className="list-group">
-          {tasks.map((element, index) => {
+          {filteredTasks.map((element, index) => {
             return (
               <li key={index} className="list-group-item">
                 {element}
