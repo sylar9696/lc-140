@@ -40,20 +40,26 @@
 
 */
 
-const express = require("express");
+const express = require('express');
 const app = express();
+
+const cors = require('cors');
+
 const port = 3000;
 const pizzasRouter = require('./routers/pizzas.js');
 
 const errorsHandler = require('./middlewares/errorsHandler.js');
 const notFound = require('./middlewares/notFound.js');
 
+app.use(
+  cors({
+    origin: 'http://localhost:5175',
+  })
+);
+
 // const checkTime = require('./middlewares/checkTime.js');
 
-// //middleware
 // app.use( checkTime );
-app.use( errorsHandler );
-app.use( notFound );
 
 //leggere la cartella public
 app.use(express.static('public'));
@@ -61,10 +67,10 @@ app.use(express.static('public'));
 //body-parser
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    // res.send(`Server della mia pizzeria`);
-    res.type('html').send(
-        `
+app.get('/', (req, res) => {
+  // res.send(`Server della mia pizzeria`);
+  res.type('html').send(
+    `
         <!DOCTYPE html>
             <html lang="en">
             <head>
@@ -101,17 +107,18 @@ app.get("/", (req, res) => {
             </body>
         </html>
         `
-    )
+  );
 });
 
+// //rotta api
+app.use('/api/pizzas', pizzasRouter);
 
-app.use("/api/pizzas", pizzasRouter)
-
-
+// //middleware
+app.use(notFound);
+app.use(errorsHandler);
 
 // //attiviamo la rotta api alle pizze
 // app.get("/api/pizze", (req, res) => {
-
 
 //     const menu = [
 //         {
@@ -139,7 +146,6 @@ app.use("/api/pizzas", pizzasRouter)
 
 //     res.json(menu)
 // })
-
 
 // //show - otteniamo l'informazione di una pizza
 // app.get('/api/pizze/:id', (req, res) => {
@@ -176,8 +182,7 @@ app.use("/api/pizzas", pizzasRouter)
 //     res.send('Eliminazione della pizza ' + req.params.id);
 // });
 
-
 //attivazione del server: http:localhost:3000
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+  console.log(`Example app listening on port ${port}`);
 });
