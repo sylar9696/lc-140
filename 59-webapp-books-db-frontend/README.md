@@ -27,7 +27,7 @@
    -📁components
    -📁pages
    -📁layouts
-6. Gestire il layouts del progetto, creando un file 📃DefaultLayout.jsx nella cartella 📁layouts
+6. Gestire il layouts del progetto, creando un file 📃DefaultLayout.jsx nella cartella 📁layouts gestendo il componente Outlet di react dom per inserire il contenuto dinamico al cambio pagina
 
    ```jsx
    import Header from '../components/Header';
