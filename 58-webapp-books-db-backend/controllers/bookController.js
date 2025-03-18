@@ -49,7 +49,7 @@ function show(req, res){
             })
 
             book.reviews = reviewsResults
-            // res.json( book)
+           
 
 
             res.json({
@@ -57,7 +57,7 @@ function show(req, res){
                 image: req.imagePath + book.image
             })
 
-            res.json( book)
+           
 
         })
     }) 
