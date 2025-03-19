@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import ReviewCard from '../components/ReviewCard';
 
+import ReviewForm from '../components/ReviewForm';
+
 export default function BookPage() {
   const { id } = useParams();
 
@@ -33,6 +35,11 @@ export default function BookPage() {
       <section>
         <h4>Our community reviews</h4>
         {renderReviews()}
+      </section>
+
+      {/* //form review */}
+      <section>
+        { book?.id && <ReviewForm book_id={book.id} reloadReviews={fetchBook} /> }
       </section>
     </>
   );

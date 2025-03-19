@@ -79,8 +79,57 @@ function destroy(req, res){
     } )
 }
 
+function storeReview(req, res){
+    //recuparare l'id
+    const {id} = req.params
+
+    //recuparare le informazioni del body
+    const {text,name,vote} = req.body
+
+    //preparazione della query
+    const sql = 'INSERT INTO reviews ( text, name, vote, book_id ) VALUES (?,?,?,?)'
+
+    //eseguiamo la query
+    connection.query( sql, [text, name, vote, id], (err, results) => {
+        if(err) return res.status(500).json({
+            error: 'Database Errore StoreReview'
+        })
+
+        res.status(201)
+        res.json({
+            message: 'review Added',
+            id: results.insertId
+        })
+    } )
+}
+
+function store(req,res){
+    //recuparare le info da req.body
+    const { title, author, abstract} = req.body
+
+    const imageName = `${req.file.filename}`
+
+    const sql = "INSERT INTO books (title, author, image, abstract) VALUES (?,?,?,?)"
+
+    connection.query( sql, [title, author, imageName, abstract], (err, results) => {
+        if(err) return res.status(500).json({
+            error: 'Database Errore Store'
+        })
+
+        res.status(201).json({
+            status: "success",
+            message: "Libro creato con successo",
+            id: results.insertId
+        }
+        )
+    })
+
+}
+
 export {
     index,
     show,
-    destroy
+    destroy,
+    storeReview,
+    store
 }

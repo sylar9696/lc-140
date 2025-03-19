@@ -329,3 +329,178 @@
       });
     }
     ```
+
+12. Gestione controller form recensioni libro:
+    12.1 Definire l'endpoint: `http://localhost:3000/books/:id/reviews`
+    12.2 Definire la nuova funzione nel controller 📃bookController.js
+
+```js
+function storeReview(req, res) {
+  //recuparare l'id
+  const { id } = req.params;
+
+  //recuparare le informazioni del body
+  const { text, name, vote } = req.body;
+
+  //preparazione della query
+  const sql =
+    'INSERT INTO reviews ( text, name, vote, book_id ) VALUES (?,?,?,?)';
+
+  //eseguiamo la query
+  connection.query(sql, [text, name, vote, id], (err, results) => {
+    if (err)
+      return res.status(500).json({
+        error: 'Database Errore StoreReview',
+      });
+
+    res.status(201);
+    res.json({
+      message: 'review Added',
+      id: results.insertId,
+    });
+  });
+}
+//aggiornare
+export {
+    index,
+    show,
+    destroy,
+    storeReview 👈
+
+}
+```
+
+12.3 importare la nuova funzione nel router: 📃bookRouter
+
+```js
+import express from 'express';
+
+const router = express.Router();
+
+import {
+index,
+show,
+destroy,
+storeReview 👈
+
+} from '../controllers/bookController.js';
+
+//Rotte per i libri
+
+//index
+//localhost:3000/books
+router.get('/', index);
+
+//show
+//localhost:3000/books/:id
+router.get('/:id', show);
+
+//destroy
+//localhost:3000/books/:id
+router.delete('/:id', destroy);
+
+//storeReview
+//localhost:3000/books/:id/reviews
+router.post('/:id/reviews', storeReview); 👈
+
+
+
+export default router;
+
+```
+
+13 Creazione del metodo store per generare nuovi libri con il caricamnte in upload delle immagini
+13.1 installare multer: `npm i multer`
+13.2 creiamo il middleware in 📁middlewares/multer.js
+
+```js
+import multer from 'multer';
+
+//funzione di upload
+const storage = multer.diskStorage({
+  destination: './public/img/books/',
+  filename: (req, file, cb) => {
+    const uniqueName = `${Date.now()}-${file.originalname}`;
+    cb(null, uniqueName);
+  },
+});
+
+const upload = multer({ storage });
+
+export default upload;
+```
+13.3 Registriamo il middleware nel router
+```js
+import express from 'express';
+
+import upload from '../middlewares/multer.js' 👈
+
+const router = express.Router();
+
+import {
+  index,
+  show,
+  destroy,
+  storeReview,
+  store 👈
+} from '../controllers/bookController.js';
+
+//Rotte per i libri
+
+//index
+//localhost:3000/books
+router.get('/', index);
+
+//show
+//localhost:3000/books/:id
+router.get('/:id', show);
+
+//destroy
+//localhost:3000/books/:id
+router.delete('/:id', destroy);
+
+//storeReview
+//localhost:3000/books/:id/reviews
+router.post('/:id/reviews', storeReview);
+
+//store
+//creazione di un nuovo libro
+//localhost:3000/books con metodo POST
+router.post( '/', upload.single('image'), store ) 👈
+
+export default router;
+
+```
+13.4 Creiamo il metodo store nel controller 📃bookController.js
+```js
+function store(req,res){
+    //recuparare le info da req.body
+    const { title, author, abstract} = req.body
+
+    const imageName = `${req.file.filename}`
+
+    const sql = "INSERT INTO books (title, author, image, abstract) VALUES (?,?,?,?)"
+
+    connection.query( sql, [title, author, imageName, abstract], (err, results) => {
+        if(err) return res.status(500).json({
+            error: 'Database Errore Store'
+        })
+
+        res.status(201).json({
+            status: "success",
+            message: "Libro creato con successo",
+            id: results.insertId
+        }
+        )
+    })
+
+}
+
+export {
+    index,
+    show,
+    destroy,
+    storeReview,
+    store 👈
+}
+```
