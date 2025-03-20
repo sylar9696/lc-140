@@ -1,23 +1,29 @@
 import BookCard from '../components/BookCard';
 // import ReviewCard from "../components/ReviewCard";
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import GlobalContext from '../contexts/globalContext';
 
 export default function HomePage() {
   const [books, setBooks] = useState([]);
+
+  const { setIsLoading } = useContext(GlobalContext)
 
   //funzione fetch per i libri
   const fetchBooks = () => {
     console.log('Fetching books...');
 
-    axios
+    setIsLoading(true)
+
+    axios 
       .get('http://localhost:3000/books')
       .then((res) => {
         setBooks(res.data);
       })
       .catch((error) => {
         console.log(error);
-      });
+      })
+      .then( () => setIsLoading(false) );
   };
 
   const renderBooks = () => {

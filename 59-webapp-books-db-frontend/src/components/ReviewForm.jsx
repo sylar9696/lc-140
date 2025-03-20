@@ -13,9 +13,26 @@ export default function ReviewForm({ book_id, reloadReviews }) {
 
   const [formData, setFormData] = useState(initialValue);
 
+  const [isFormValid, setIsFormValid] = useState(true);
+
+  //funzione di validazione
+  const validateForm = () => {
+    if ( !formData.text || !formData.name) return false;
+    if( isNaN(formData.vote) || formData.vote < 1 || formData.vote > 5) return false;
+    
+    return true;
+  }
+  
+
   const handleSubmit = (e) => {
 
     e.preventDefault();
+
+    //effettuiamo la validazione
+    if( !validateForm() ){
+      setIsFormValid(false);
+      return;
+    }
 
 
     axios
@@ -45,6 +62,10 @@ export default function ReviewForm({ book_id, reloadReviews }) {
       <div className="card">
         <h5>Add reviews</h5>
         <div className="card-body">
+
+          { !isFormValid && <div className='alert alert-danger mb-3'>I dati nel form non sono validi</div> }
+
+
           <form onSubmit={handleSubmit}>
             <div className='form-group'>
                 <label >Name</label>

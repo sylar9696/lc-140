@@ -28,7 +28,15 @@ function index(req, res){
 function show(req, res){
     const {id} = req.params;
 
-    const bookSql = 'SELECT * FROM books WHERE id= ?'
+    // const bookSql = 'SELECT * FROM books WHERE id= ?'
+
+    const bookSql = `
+        SELECT B.*, ROUND( AVG(R.vote)) AS average_vote
+        FROM books B
+        LEFT JOIN reviews R
+        ON R.book_id = B.id
+        WHERE B.id = ?`
+
 
     const reviewsSql = 'SELECT * FROM reviews WHERE book_id = ?'
 
@@ -48,13 +56,17 @@ function show(req, res){
                 error: 'Errore lato server SHOW function'
             })
 
-            book.reviews = reviewsResults
+            //book.reviews = reviewsResults
            
-
+            //trasformo il valore di average_vote in numero intero
+            // book.average_vote = parseInt(book.average_vote)
+            
 
             res.json({
                 ...book,
-                image: req.imagePath + book.image
+                image: req.imagePath + book.image,
+                average_vote: parseInt(book.average_vote),
+                reviews: reviewsResults
             })
 
            

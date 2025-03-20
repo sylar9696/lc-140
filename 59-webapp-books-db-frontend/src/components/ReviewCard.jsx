@@ -1,3 +1,5 @@
+import StarRating from "./StarRating"
+
 export default function ReviewCard({review}){
 
     const {id, name, vote, text} = review
@@ -10,7 +12,7 @@ export default function ReviewCard({review}){
                     <p className="card-text">
                         {text}
                     </p>
-                    <span>Voto: {vote}</span>
+                    <span>Voto: <StarRating vote={vote}/> {vote} / 5</span>
                 </div>
             </div>
         </>

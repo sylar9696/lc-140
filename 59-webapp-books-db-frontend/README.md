@@ -655,3 +655,177 @@ export default function CreateBookPage() {
   );
 }
 ```
+
+14. Creiamo il Loader per il progetto frontend: 📁components/Loader.jsx
+
+    ```jsx
+    export default function Loader() {
+      return (
+        <>
+          <div className="overlay">
+            <div className="spinner-border text-primary" role="status"></div>
+          </div>
+        </>
+      );
+    }
+    ```
+
+    14.1 Aggiorniamo il codice css in 📃index.css
+
+    ```css
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 100;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .spinner-border {
+        width: 200px;
+        height: 200px;
+        font-size: 2rem;
+      }
+    }
+    ```
+
+    14.2 creazione delle context API per gestire globalmente il Loader
+    Creiamo il file 📃contexts/globalContext.js
+
+    ```js
+    import { createContext } from 'react';
+
+    const GlobalContext = createContext();
+
+    export default GlobalContext;
+    ```
+    14.3 Importiamo il context in app.jsx
+    ```jsx
+    import DefaultLayout from './layouts/DefaultLayout';
+    import { Routes, Route, BrowserRouter } from 'react-router-dom';
+    import HomePage from './pages/HomePage';
+    import BookPage from './pages/BookPage';
+    import CreateBookPage from './pages/CreateBookPage';
+    import GlobalContext from './contexts/globalContext'; 👈
+    import { useState } from 'react'; 👈
+
+    function App() {
+
+      const [ isLoading, setIsLoading ] = useState(false) 👈
+
+      return (
+        <>
+          <GlobalContext.Provider value={{ isLoading, setIsLoading }}>👈
+            <BrowserRouter>
+              <Routes>
+                <Route Component={DefaultLayout}>
+                  {/* qui vanno le pagine */}
+                  <Route path="/" Component={HomePage} />
+                  <Route path="/books/:id" Component={BookPage} />
+                  <Route path="/books/create" Component={CreateBookPage} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </GlobalContext.Provider>👈
+        </>
+      );
+    }
+
+    export default App;
+
+    ```
+    14.4 utiliziamo il loader nel file di layout 📁layouts/DefaultLayout.jsx
+    ```jsx
+    import Header from '../components/Header'
+    import { Outlet } from "react-router-dom"
+
+    import GlobalContext from '../contexts/globalContext'
+    import Loader from '../components/Loader' 👈
+    import { useContext } from 'react' 👈
+
+    export default function DefaultLayout(){
+
+        const {isLoading} = useContext(GlobalContext) 👈
+
+        return(
+            <>
+                <Header/>
+                <main className='container'>
+                    <Outlet/>
+                </main>
+
+                { isLoading && <Loader/> } 👈
+
+            </>
+        )
+    }
+    ```
+
+    14.5 consumiamo il loader nella pagina desiderata ad esempio HomePage.jsx
+    ```jsx
+    import BookCard from '../components/BookCard';
+    // import ReviewCard from "../components/ReviewCard";
+    import axios from 'axios';
+    import { useState, useEffect, useContext } from 'react'; 👈
+    import GlobalContext from '../contexts/globalContext'; 👈
+
+    export default function HomePage() {
+      const [books, setBooks] = useState([]);
+
+      const { setIsLoading } = useContext(GlobalContext)👈
+
+      //funzione fetch per i libri
+      const fetchBooks = () => {
+        console.log('Fetching books...');
+
+        setIsLoading(true) 👈
+
+        axios 
+          .get('http://localhost:3000/books')
+          .then((res) => {
+            setBooks(res.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+          .then( () => setIsLoading(false) ); 👈
+      };
+
+      const renderBooks = () => {
+        return books.map((book) => {
+          return (
+            <div className="col" key={book.id}>
+              <BookCard book={book} />
+            </div>
+          );
+        });
+      };
+
+      useEffect(fetchBooks, []);
+
+      return (
+        <>
+          <h1 className="text-primary">Bool Books</h1>
+          <h2>Qui andranno tutti i libri</h2>
+          <div className="row row-cols-3">
+            {/* <BookCard/> */}
+            {renderBooks()}
+
+            {/* {books.map((book) => {
+              return (
+                <div className="col" key={book.id}>
+                  <BookCard book={book} />
+                </div>
+              );
+            })} */}
+          </div>
+        </>
+      );
+    }
+
+    ```
